@@ -30,3 +30,27 @@ puts find_best_profit stockPricesYesterday
 
 #return the max profit
 
+
+# Below, see my own concoction of the solution.
+def calc_best_profit(stock_prices)
+
+  max_profit = 0
+  lowest_price_yet = stock_prices[0]
+  highest_price_yet = stock_prices[0] 
+
+  stock_prices.each do |price|
+    if price > highest_price_yet
+      highest_price_yet = price
+      max_profit = [(highest_price_yet - lowest_price_yet), max_profit].max
+    elsif price < lowest_price_yet
+      lowest_price_yet = price
+    end
+    puts "New Max: #{highest_price_yet}" 
+    puts "New Min: #{lowest_price_yet}"
+    puts "New Max Profit: #{max_profit}"
+  end
+
+  return max_profit
+end
+
+puts "Best Profit: #{calc_best_profit( [1,3,3,7,20,3,2,40,1,9,7] )}"
